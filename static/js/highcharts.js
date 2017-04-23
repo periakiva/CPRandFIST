@@ -6,10 +6,10 @@ var chart;
  */
 function requestData() {
     $.ajax({
-        url: '/live-data',
+						url: '/live-data',
         success: function(point) {
-            var series = chart.series[0],
-                shift = series.data.length > 20; // shift if the series is
+            var series = chart.series[0], 
+								shift = series.data.length > 20; // shift if the series is
                                                  // longer than 20
 
             // add the point
