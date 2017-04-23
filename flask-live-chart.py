@@ -1,4 +1,6 @@
 import talib
+from twilio import twiml
+from twilio.rest import Client
 import json
 import urllib2, json
 import time 
@@ -8,64 +10,23 @@ from numpy import array
 from time import sleep
 app = Flask(__name__)
 
+account_sid = "AC04d258f01863a43af71b9ae77e20584e"
+auth_token = "2c6bd87946e677d6bb7dd0e639522e73"
 
-prices = []
-open = []
-high = []
-low = []
-close = []
-def suggestion(open,high,low,close):
-
-    pattern = talib.CDLDOJI(array(open),array(high), array(low), array(close))
-    print(len(pattern))
-    print(pattern[len(pattern)-1])
-    result = pattern[len(pattern)-1]
-    if result == 100:
-        return "BUY"
-    elif result == -100:
-        return "SELL"
-    else:
-        return "HOLD"
-    
-    
-
-
+client = Client(account_sid,auth_token)
 
 def getarray(ticker):
-    global prices
-    global close
-    global open
-    global high
-    global low
+    prices=[]
     url = "http://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + str(ticker) + "&interval=1min&outputsize=full&apikey=1745"
     response = urllib2.urlopen(url)
     data = json.loads(response.read())
     for i in range(10,15):
         for j in range(10,59):
             try:
-                open_var = data['Time Series (1min)']["2017-04-21 " + str(i) + ":" + str(j) + ":00"]['1. open']
-                high_var = data['Time Series (1min)']["2017-04-21 " + str(i) + ":" + str(j) + ":00"]['2. high']
-                low_var = data['Time Series (1min)']["2017-04-21 " + str(i) + ":" + str(j) + ":00"]['3. low']
                 close_var = data['Time Series (1min)']["2017-04-21 " + str(i) + ":" + str(j) + ":00"]['4. close']
-                close.append(float(close_var))
-                open.append(float(open_var))
-                high.append(float(high_var))
-                low.append(float(low_var))
-                print(open_var)
-                if len(open)>3:
-                    close.pop()
-                    open.pop()
-                    high.pop()
-                    low.pop()
-                    print(len(open))
-                    suggestion_var = suggestion(open,high,low,close) 
-                    print(suggestion_var)
-                    sleep(5)
-
                 prices.append(float(close_var))
             except (KeyError):
                 continue
-
 
     return prices
 
@@ -103,7 +64,18 @@ def ticker():
     print(ticker)
     return render_template('index.html',ticker=ticker)
 
+number=0
 numbered_data=0
+@app.route('/sub',methods=['POST'])
+def sub():
+    global number
+    number = "+1" + request.form['sub']
+    number = int(number)
+    print(number)
+    client.messages.create(
+        to = number, from_="+17323380639", body = "Thank you for subscribing for the stock " + str(ticker))
+    return render_template('index.html')
+
 
 @app.route('/live-data')
 def live_data():
