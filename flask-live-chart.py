@@ -1,36 +1,71 @@
+import talib
 import json
 import urllib2, json
 import time 
 from random import random
 from flask import Flask, render_template, make_response, g, request, url_for
-
+from numpy import array
+from time import sleep
 app = Flask(__name__)
-"""
-def after_this_request(func):
-    if not hasattr(g,'call_after_request'):
-        g.call_after_request=[]
-    g.call_after_request.append(func)
-    return func
 
-@app.after_request
-def per_request_callbacks(respose):
-    for func in getattr(g,'ca;;_after_request',()):
-        response = func(response)
-    return response
-"""
+
+prices = []
+open = []
+high = []
+low = []
+close = []
+def suggestion(open,high,low,close):
+
+    pattern = talib.CDLDOJI(array(open),array(high), array(low), array(close))
+    print(len(pattern))
+    print(pattern[len(pattern)-1])
+    result = pattern[len(pattern)-1]
+    if result == 100:
+        return "BUY"
+    elif result == -100:
+        return "SELL"
+    else:
+        return "HOLD"
+    
+    
+
+
 
 def getarray(ticker):
-    prices=[]
+    global prices
+    global close
+    global open
+    global high
+    global low
     url = "http://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + str(ticker) + "&interval=1min&outputsize=full&apikey=1745"
     response = urllib2.urlopen(url)
     data = json.loads(response.read())
     for i in range(10,15):
         for j in range(10,59):
             try:
-                close = data['Time Series (1min)']["2017-04-21 " + str(i) + ":" + str(j) + ":00"]['4. close']
-                prices.append(float(close))
+                open_var = data['Time Series (1min)']["2017-04-21 " + str(i) + ":" + str(j) + ":00"]['1. open']
+                high_var = data['Time Series (1min)']["2017-04-21 " + str(i) + ":" + str(j) + ":00"]['2. high']
+                low_var = data['Time Series (1min)']["2017-04-21 " + str(i) + ":" + str(j) + ":00"]['3. low']
+                close_var = data['Time Series (1min)']["2017-04-21 " + str(i) + ":" + str(j) + ":00"]['4. close']
+                close.append(float(close_var))
+                open.append(float(open_var))
+                high.append(float(high_var))
+                low.append(float(low_var))
+                print(open_var)
+                if len(open)>3:
+                    close.pop()
+                    open.pop()
+                    high.pop()
+                    low.pop()
+                    print(len(open))
+                    suggestion_var = suggestion(open,high,low,close) 
+                    print(suggestion_var)
+                    sleep(5)
+
+                prices.append(float(close_var))
             except (KeyError):
                 continue
+
 
     return prices
 
@@ -59,7 +94,7 @@ def data(number):
     return response
 
 ticker = "AAPL"
-print(getarray(ticker))
+#print(getarray(ticker))
 
 @app.route('/ticker',methods=['POST'])
 def ticker():
