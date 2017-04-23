@@ -10,8 +10,8 @@ from numpy import array
 from time import sleep
 app = Flask(__name__)
 
-account_sid = "AC04d258f01863a43af71b9ae77e20584e"
-auth_token = "2c6bd87946e677d6bb7dd0e639522e73"
+account_sid = #hidden
+auth_token = #hidden
 
 client = Client(account_sid,auth_token)
 
