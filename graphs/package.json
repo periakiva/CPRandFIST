@@ -1,0 +1,19 @@
+{
+  "name": "capstone_angular",
+  "version": "1.0.0",
+  "description": "capstone pproject",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chris",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "chosen-js": "^1.7.0",
+    "ejs": "^2.5.6",
+    "express": "^4.14.1",
+    "mongoose": "^4.8.4",
+    "passport": "^0.3.2"
+  }
+}

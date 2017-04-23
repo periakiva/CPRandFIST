@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Analysis</title>
+      
+  </head>
+  
+  <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+  <link href="/assets/chosen/chosen.min.css" rel="stylesheet">
+  <script type="text/javascript" src="/assets/chosen/chosen.jquery.min.js"></script>
+    
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+  <script src="/assets/js/fusioncharts.js"></script>
+
+  <script>
+    FusionCharts.ready(function () {
+      var myChart1 = new FusionCharts({
+          type: 'line',
+          renderAt: 'chart-container1',
+          width: "100%",
+          height: "400",
+          dataFormat: 'jsonurl',
+          dataSource: "/symbol=<%=sym.sym1%>"
+      }).render();
+     
+	 var myChart2 = new FusionCharts({
+          type: 'line',
+          renderAt: 'chart-container2',
+          width: "100%",
+          height: "400",
+          dataFormat: 'jsonurl',
+          dataSource: "/symbol=<%=sym.sym2%>"
+      }).render();
+
+      var myChart3 = new FusionCharts({
+          type: 'line',
+          renderAt: 'chart-container3',
+          width: "100%",
+          height: "400",
+          dataFormat: 'jsonurl',
+          dataSource: "/symbol=<%=sym.sym3%>"
+      }).render();
+    });
+  </script>
+
+  
+  <style media="screen">
+    #realBody{
+      margin-top: 60px;
+    }
+    body{
+      background-color: #252830;
+      color: #cfd2da;
+    }
+    .navbar-inverse .navbar-nav>li>a{
+      color:#cfd2da;
+    }
+    /*for stubborn nav element*/
+    #changeColor{
+      color:#cfd2da;
+    }
+  </style>
+    
+  
+
+  <body>
+      
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" id="changeColor" href="#">RoBoBull</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="../../theme-dashboard-extended/docs/fluid/index.html">Home</a></li>
+<!--           
+              <li><a href="#">Page 1</a></li>
+            <li><a href="#">Page 2</a></li>
+            <li><a href="#">Page 3</a></li>
+-->
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Sign Up</a></li>
+            <li><a href="#">Login</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid" id="realBody">
+      <div class="row">
+        <div class="col-md-4 col-xs-4">
+            <h3>Overview</h3>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4" id="chart-container1"></div>
+        <div class="col-md-4" id="chart-container2"></div>
+        <div class="col-md-4" id="chart-container3"></div>
+      </div>
+<!--     insert select   -->
+            <form action="/symbol" method="POST">
+        <!--div class="row" -->
+          <select data-placeholder="Search" class="chosen" style="width: 190px;" tabindex="-1" name="sym1">
+                <option value = ""> </option>
+                <option value = "A">A</option>
+                <option value = "AA">AA</option>
+                <option value = "AAL">AAL</option>
+                <option value = "AAP">AAP</option>
+                <option value = "AAPL">AAPL</option>
+                <option value = "ABBV">ABBV</option>
+                <option value = "ABC">ABC</option>
+                <option value = "ABT">ABT</option>
+                <option value = "ACN">ACN</option>
+                <option value = "ADBE">ADBE</option>
+                <option value = "ADI">ADI</option>
+                <option value = "ADM">ADM</option>
+                <option value = "ADP">ADP</option>
+                <option value = "ADS">ADS</option>
+                <option value = "ADSK">ADSK</option>
+                <option value = "AEE">AEE</option>
+                <option value = "AEP">AEP</option>
+                <option value = "AES">AES</option>
+                <option value = "AET">AET</option>
+                <option value = "AFL">AFL</option>
+                <option value = "AGN">AGN</option>
+                <option value = "AIG">AIG</option>
+                <option value = "AIV">AIV</option>
+                <option value = "AIZ">AIZ</option>
+                <option value = "AJG">AJG</option>
+                <option value = "AKAM">AKAM</option>
+                <option value = "ALB">ALB</option>
+                <option value = "ALK">ALK</option>
+                <option value = "ALL">ALL</option>
+                <option value = "ALLE">ALLE</option>
+                <option value = "ALXN">ALXN</option>
+                <option value = "AMAT">AMAT</option>
+                <option value = "AME">AME</option>
+                <option value = "AMG">AMG</option>
+                <option value = "AMGN">AMGN</option>
+                <option value = "AMP">AMP</option>
+                <option value = "AMT">AMT</option>
+                <option value = "AMZN">AMZN</option>
+                <option value = "AN">AN</option>
+                <option value = "ANTM">ANTM</option>
+                <option value = "AON">AON</option>
+                <option value = "APA">APA</option>
+                <option value = "APC">APC</option>
+                <option value = "APD">APD</option>
+                <option value = "APH">APH</option>
+                <option value = "ATVI">ATVI</option>
+                <option value = "AVB">AVB</option>
+                <option value = "AVGO">AVGO</option>
+                <option value = "AVY">AVY</option>
+                <option value = "AWK">AWK</option>
+                <option value = "AXP">AXP</option>
+                <option value = "AYI">AYI</option>
+                <option value = "AZO">AZO</option>
+                <option value = "BA">BA</option>
+                <option value = "BAC">BAC</option>
+                <option value = "BAX">BAX</option>
+                <option value = "BBBY">BBBY</option>
+                <option value = "BBT">BBT</option>
+                <option value = "BBY">BBY</option>
+                <option value = "BCR">BCR</option>
+                <option value = "BDX">BDX</option>
+                <option value = "BEN">BEN</option>
+                <option value = "BHI">BHI</option>
+                <option value = "BIIB">BIIB</option>
+                <option value = "BK">BK</option>
+                <option value = "BLK">BLK</option>
+                <option value = "BLL">BLL</option>
+                <option value = "BMY">BMY</option>
+                <option value = "BSX">BSX</option>
+                <option value = "BWA">BWA</option>
+                <option value = "BXP">BXP</option>
+                <option value = "C">C</option>
+                <option value = "CA">CA</option>
+                <option value = "CAG">CAG</option>
+                <option value = "CAH">CAH</option>
+                <option value = "CAT">CAT</option>
+                <option value = "CB">CB</option>
+                <option value = "CBG">CBG</option>
+                <option value = "CBS">CBS</option>
+                <option value = "CCI">CCI</option>
+                <option value = "CCL">CCL</option>
+                <option value = "CELG">CELG</option>
+                <option value = "CERN">CERN</option>
+                <option value = "CF">CF</option>
+                <option value = "CFG">CFG</option>
+                <option value = "CHD">CHD</option>
+                <option value = "CHK">CHK</option>
+                <option value = "CHRW">CHRW</option>
+                <option value = "CI">CI</option>
+                <option value = "CINF">CINF</option>
+                <option value = "CL">CL</option>
+                <option value = "CLX">CLX</option>
+                <option value = "CMA">CMA</option>
+                <option value = "CMCSA">CMCSA</option>
+                <option value = "CME">CME</option>
+                <option value = "CMG">CMG</option>
+                <option value = "CMI">CMI</option>
+                <option value = "CMS">CMS</option>
+                <option value = "CNC">CNC</option>
+                <option value = "CNP">CNP</option>
+                <option value = "COF">COF</option>
+                <option value = "COG">COG</option>
+                <option value = "COH">COH</option>
+                <option value = "COL">COL</option>
+                <option value = "COP">COP</option>
+                <option value = "COST">COST</option>
+                <option value = "CPB">CPB</option>
+                <option value = "CRM">CRM</option>
+                <option value = "CSCO">CSCO</option>
+                <option value = "CSRA">CSRA</option>
+                <option value = "CSX">CSX</option>
+                <option value = "CTAS">CTAS</option>
+                <option value = "CTL">CTL</option>
+                <option value = "CTSH">CTSH</option>
+                <option value = "CTXS">CTXS</option>
+                <option value = "CVS">CVS</option>
+                <option value = "CVX">CVX</option>
+                <option value = "CXO">CXO</option>
+                <option value = "D">D</option>
+                <option value = "DAL">DAL</option>
+                <option value = "DD">DD</option>
+                <option value = "DE">DE</option>
+                <option value = "DFS">DFS</option>
+                <option value = "DG">DG</option>
+                <option value = "DGX">DGX</option>
+                <option value = "DHI">DHI</option>
+                <option value = "DHR">DHR</option>
+                <option value = "DIS">DIS</option>
+                <option value = "DISCA">DISCA</option>
+                <option value = "DISCK">DISCK</option>
+                <option value = "DLPH">DLPH</option>
+                <option value = "DLR">DLR</option>
+                <option value = "DLTR">DLTR</option>
+                <option value = "DNB">DNB</option>
+                <option value = "DO">DO</option>
+                <option value = "DOV">DOV</option>
+                <option value = "DOW">DOW</option>
+                <option value = "DPS">DPS</option>
+                <option value = "DRI">DRI</option>
+                <option value = "DTE">DTE</option>
+                <option value = "DUK">DUK</option>
+                <option value = "DVA">DVA</option>
+                <option value = "DVN">DVN</option>
+                <option value = "EA">EA</option>
+                <option value = "EBAY">EBAY</option>
+                <option value = "ECL">ECL</option>
+                <option value = "ED">ED</option>
+                <option value = "EFX">EFX</option>
+                <option value = "EIX">EIX</option>
+                <option value = "EL">EL</option>
+                <option value = "EQR">EQR</option>
+                <option value = "EQT">EQT</option>
+                <option value = "ES">ES</option>
+                <option value = "ESRX">ESRX</option>
+                <option value = "ESS">ESS</option>
+                <option value = "ETFC">ETFC</option>
+                <option value = "ETN">ETN</option>
+                <option value = "ETR">ETR</option>
+                <option value = "EW">EW</option>
+                <option value = "EXC">EXC</option>
+                <option value = "EXPD">EXPD</option>
+                <option value = "EXPE">EXPE</option>
+                <option value = "EXR">EXR</option>
+                <option value = "F">F</option>
+                <option value = "FAST">FAST</option>
+                <option value = "FB">FB</option>
+                <option value = "FBHS">FBHS</option>
+                <option value = "FCX">FCX</option>
+                <option value = "FDX">FDX</option>
+                <option value = "FE">FE</option>
+                <option value = "FFIV">FFIV</option>
+                <option value = "FIS">FIS</option>
+                <option value = "FISV">FISV</option>
+                <option value = "FITB">FITB</option>
+                <option value = "FL">FL</option>
+                <option value = "FLIR">FLIR</option>
+                <option value = "FLR">FLR</option>
+                <option value = "FLS">FLS</option>
+                <option value = "FMC">FMC</option>
+                <option value = "FOX">FOX</option>
+                <option value = "FOXA">FOXA</option>
+                <option value = "FRT">FRT</option>
+                <option value = "FSLR">FSLR</option>
+                <option value = "FTI">FTI</option>
+                <option value = "FTR">FTR</option>
+                <option value = "FTV">FTV</option>
+                <option value = "GD">GD</option>
+                <option value = "GE">GE</option>
+                <option value = "GGP">GGP</option>
+                <option value = "GILD">GILD</option>
+                <option value = "GIS">GIS</option>
+                <option value = "GLW">GLW</option>
+                <option value = "GM">GM</option>
+                <option value = "GOOG">GOOG</option>
+                <option value = "GOOGL">GOOGL</option>
+                <option value = "GPC">GPC</option>
+                <option value = "GPN">GPN</option>
+                <option value = "GPS">GPS</option>
+                <option value = "GRMN">GRMN</option>
+                <option value = "GS">GS</option>
+                <option value = "GT">GT</option>
+                <option value = "GWW">GWW</option>
+                <option value = "HAL">HAL</option>
+                <option value = "HAS">HAS</option>
+                <option value = "HBAN">HBAN</option>
+                <option value = "HBI">HBI</option>
+                <option value = "HCA">HCA</option>
+                <option value = "HCN">HCN</option>
+                <option value = "HCP">HCP</option>
+                <option value = "HD">HD</option>
+                <option value = "HES">HES</option>
+                <option value = "HIG">HIG</option>
+                <option value = "HOG">HOG</option>
+                <option value = "HOLX">HOLX</option>
+                <option value = "HON">HON</option>
+                <option value = "HP">HP</option>
+                <option value = "HPE">HPE</option>
+                <option value = "HPQ">HPQ</option>
+                <option value = "HRB">HRB</option>
+                <option value = "HRL">HRL</option>
+                <option value = "HRS">HRS</option>
+                <option value = "HSIC">HSIC</option>
+                <option value = "HST">HST</option>
+                <option value = "HSY">HSY</option>
+                <option value = "HUM">HUM</option>
+                <option value = "IBM">IBM</option>
+                <option value = "ICE">ICE</option>
+                <option value = "IFF">IFF</option>
+                <option value = "ILMN">ILMN</option>
+                <option value = "INTC">INTC</option>
+                <option value = "INTU">INTU</option>
+                <option value = "IP">IP</option>
+                <option value = "IPG">IPG</option>
+                <option value = "IR">IR</option>
+                <option value = "IRM">IRM</option>
+                <option value = "ISRG">ISRG</option>
+                <option value = "ITW">ITW</option>
+                <option value = "IVZ">IVZ</option>
+                <option value = "JBHT">JBHT</option>
+                <option value = "JCI">JCI</option>
+                <option value = "JEC">JEC</option>
+                <option value = "JNJ">JNJ</option>
+                <option value = "JNPR">JNPR</option>
+                <option value = "JPM">JPM</option>
+                <option value = "JWN">JWN</option>
+                <option value = "K">K</option>
+                <option value = "KEY">KEY</option>
+                <option value = "KHC">KHC</option>
+                <option value = "KIM">KIM</option>
+                <option value = "KLAC">KLAC</option>
+                <option value = "KMB">KMB</option>
+                <option value = "KMI">KMI</option>
+                <option value = "KMX">KMX</option>
+                <option value = "KO">KO</option>
+                <option value = "KORS">KORS</option>
+                <option value = "KR">KR</option>
+                <option value = "KSS">KSS</option>
+                <option value = "KSU">KSU</option>
+                <option value = "L">L</option>
+                <option value = "LB">LB</option>
+                <option value = "LEG">LEG</option>
+                <option value = "LEN">LEN</option>
+                <option value = "LH">LH</option>
+                <option value = "LKQ">LKQ</option>
+                <option value = "LLL">LLL</option>
+                <option value = "LLY">LLY</option>
+                <option value = "LM">LM</option>
+                <option value = "LMT">LMT</option>
+                <option value = "LNC">LNC</option>
+                <option value = "LNT">LNT</option>
+                <option value = "LOW">LOW</option>
+                <option value = "LRCX">LRCX</option>
+                <option value = "LUK">LUK</option>
+                <option value = "LUV">LUV</option>
+                <option value = "LVLT">LVLT</option>
+                <option value = "LYB">LYB</option>
+                <option value = "M">M</option>
+                <option value = "MA">MA</option>
+                <option value = "MAC">MAC</option>
+                <option value = "MAR">MAR</option>
+                <option value = "MAS">MAS</option>
+                <option value = "MAT">MAT</option>
+                <option value = "MCD">MCD</option>
+                <option value = "MCHP">MCHP</option>
+                <option value = "MCK">MCK</option>
+                <option value = "MCO">MCO</option>
+                <option value = "MDLZ">MDLZ</option>
+                <option value = "MDT">MDT</option>
+                <option value = "MET">MET</option>
+                <option value = "MHK">MHK</option>
+                <option value = "MJN">MJN</option>
+                <option value = "MKC">MKC</option>
+                <option value = "MLM">MLM</option>
+                <option value = "MMC">MMC</option>
+                <option value = "MMM">MMM</option>
+                <option value = "MNK">MNK</option>
+                <option value = "MNST">MNST</option>
+                <option value = "MO">MO</option>
+                <option value = "MON">MON</option>
+                <option value = "MOS">MOS</option>
+                <option value = "MPC">MPC</option>
+                <option value = "MRK">MRK</option>
+                <option value = "MRO">MRO</option>
+                <option value = "MS">MS</option>
+                <option value = "MSFT">MSFT</option>
+                <option value = "MSI">MSI</option>
+                <option value = "MTB">MTB</option>
+                <option value = "MU">MU</option>
+                <option value = "MUR">MUR</option>
+                <option value = "MYL">MYL</option>
+                <option value = "NAVI">NAVI</option>
+                <option value = "NBL">NBL</option>
+                <option value = "NDAQ">NDAQ</option>
+                <option value = "NEE">NEE</option>
+                <option value = "NEM">NEM</option>
+                <option value = "NFLX">NFLX</option>
+                <option value = "NFX">NFX</option>
+                <option value = "NI">NI</option>
+                <option value = "NKE">NKE</option>
+                <option value = "NLSN">NLSN</option>
+                <option value = "NOC">NOC</option>
+                <option value = "NOV">NOV</option>
+                <option value = "NRG">NRG</option>
+                <option value = "NSC">NSC</option>
+                <option value = "NTAP">NTAP</option>
+                <option value = "NTRS">NTRS</option>
+                <option value = "NUE">NUE</option>
+                <option value = "NVDA">NVDA</option>
+                <option value = "NWL">NWL</option>
+                <option value = "NWS">NWS</option>
+                <option value = "NWSA">NWSA</option>
+                <option value = "O">O</option>
+                <option value = "OI">OI</option>
+                <option value = "OKE">OKE</option>
+                <option value = "OMC">OMC</option>
+                <option value = "ORCL">ORCL</option>
+                <option value = "ORLY">ORLY</option>
+                <option value = "OXY">OXY</option>
+                <option value = "PAYX">PAYX</option>
+                <option value = "PBCT">PBCT</option>
+                <option value = "PBI">PBI</option>
+                <option value = "PCAR">PCAR</option>
+                <option value = "PCG">PCG</option>
+                <option value = "PCLN">PCLN</option>
+                <option value = "PDCO">PDCO</option>
+                <option value = "PEG">PEG</option>
+                <option value = "PEP">PEP</option>
+                <option value = "PFE">PFE</option>
+                <option value = "PFG">PFG</option>
+                <option value = "PG">PG</option>
+                <option value = "PGR">PGR</option>
+                <option value = "PH">PH</option>
+                <option value = "PHM">PHM</option>
+                <option value = "PKI">PKI</option>
+                <option value = "PLD">PLD</option>
+                <option value = "PM">PM</option>
+                <option value = "PNC">PNC</option>
+                <option value = "PNR">PNR</option>
+                <option value = "PNW">PNW</option>
+                <option value = "P">P</option>
+                <option value = "PPG">PPG</option>
+                <option value = "PPL">PPL</option>
+                <option value = "PRGO">PRGO</option>
+                <option value = "PRU">PRU</option>
+                <option value = "PSA">PSA</option>
+                <option value = "PSX">PSX</option>
+                <option value = "PVH">PVH</option>
+                <option value = "PWR">PWR</option>
+                <option value = "PX">PX</option>
+                <option value = "PXD">PXD</option>
+                <option value = "PYPL">PYPL</option>
+                <option value = "QCOM">QCOM</option>
+                <option value = "QRVO">QRVO</option>
+                <option value = "R">R</option>
+                <option value = "RAI">RAI</option>
+                <option value = "RCL">RCL</option>
+                <option value = "REGN">REGN</option>
+                <option value = "RF">RF</option>
+                <option value = "RHI">RHI</option>
+                <option value = "RHT">RHT</option>
+                <option value = "RIG">RIG</option>
+                <option value = "RL">RL</option>
+                <option value = "ROK">ROK</option>
+                <option value = "ROP">ROP</option>
+                <option value = "ROST">ROST</option>
+                <option value = "RRC">RRC</option>
+                <option value = "RSG">RSG</option>
+                <option value = "RTN">RTN</option>
+                <option value = "SBUX">SBUX</option>
+                <option value = "SCG">SCG</option>
+                <option value = "SCHW">SCHW</option>
+                <option value = "SE">SE</option>
+                <option value = "SEE">SEE</option>
+                <option value = "SHW">SHW</option>
+                <option value = "SIG">SIG</option>
+                <option value = "SJM">SJM</option>
+                <option value = "SLB">SLB</option>
+                <option value = "SLG">SLG</option>
+                <option value = "SNA">SNA</option>
+                <option value = "SNI">SNI</option>
+                <option value = "SO">SO</option>
+                <option value = "SPG">SPG</option>
+                <option value = "SPGI">SPGI</option>
+                <option value = "SPLS">SPLS</option>
+                <option value = "SRCL">SRCL</option>
+                <option value = "SRE">SRE</option>
+                <option value = "STI">STI</option>
+                <option value = "STT">STT</option>
+                <option value = "STX">STX</option>
+                <option value = "STZ">STZ</option>
+                <option value = "SWK">SWK</option>
+                <option value = "SWKS">SWKS</option>
+                <option value = "SWN">SWN</option>
+                <option value = "SYF">SYF</option>
+                <option value = "SYK">SYK</option>
+                <option value = "SYMC">SYMC</option>
+                <option value = "SYY">SYY</option>
+                <option value = "T">T</option>
+                <option value = "TAP">TAP</option>
+                <option value = "TDC">TDC</option>
+                <option value = "TDG">TDG</option>
+                <option value = "TEL">TEL</option>
+                <option value = "TGNA">TGNA</option>
+                <option value = "TGT">TGT</option>
+                <option value = "TIF">TIF</option>
+                <option value = "TJX">TJX</option>
+                <option value = "TMK">TMK</option>
+                <option value = "TMO">TMO</option>
+                <option value = "TRIP">TRIP</option>
+                <option value = "TROW">TROW</option>
+                <option value = "TRV">TRV</option>
+                <option value = "TSCO">TSCO</option>
+                <option value = "TSN">TSN</option>
+                <option value = "TSO">TSO</option>
+                <option value = "TSS">TSS</option>
+                <option value = "TWX">TWX</option>
+                <option value = "TXN">TXN</option>
+                <option value = "TXT">TXT</option>
+                <option value = "UA">UA</option>
+                <option value = "UAL">UAL</option>
+                <option value = "UDR">UDR</option>
+                <option value = "UHS">UHS</option>
+                <option value = "ULTA">ULTA</option>
+                <option value = "UNH">UNH</option>
+                <option value = "UNM">UNM</option>
+                <option value = "UNP">UNP</option>
+                <option value = "UPS">UPS</option>
+                <option value = "URBN">URBN</option>
+                <option value = "URI">URI</option>
+                <option value = "USB">USB</option>
+                <option value = "UTX">UTX</option>
+                <option value = "V">V</option>
+                <option value = "VAR">VAR</option>
+                <option value = "VFC">VFC</option>
+                <option value = "VIAB">VIAB</option>
+                <option value = "VLO">VLO</option>
+                <option value = "VMC">VMC</option>
+                <option value = "VNO">VNO</option>
+                <option value = "VRSK">VRSK</option>
+                <option value = "VRSN">VRSN</option>
+                <option value = "VRTX">VRTX</option>
+                <option value = "VTR">VTR</option>
+                <option value = "VZ">VZ</option>
+                <option value = "WAT">WAT</option>
+                <option value = "WBA">WBA</option>
+                <option value = "WDC">WDC</option>
+                <option value = "WEC">WEC</option>
+                <option value = "WFC">WFC</option>
+                <option value = "WFM">WFM</option>
+                <option value = "WHR">WHR</option>
+                <option value = "WLTW">WLTW</option>
+                <option value = "WM">WM</option>
+                <option value = "WMB">WMB</option>
+                <option value = "WMT">WMT</option>
+                <option value = "WRK">WRK</option>
+                <option value = "WU">WU</option>
+                <option value = "WY">WY</option>
+                <option value = "WYN">WYN</option>
+                <option value = "WYNN">WYNN</option>
+                <option value = "XEC">XEC</option>
+                <option value = "XEL">XEL</option>
+                <option value = "XL">XL</option>
+                <option value = "XLNX">XLNX</option>
+                <option value = "XOM">XOM</option>
+                <option value = "XRAY">XRAY</option>
+                <option value = "XRX">XRX</option>
+                <option value = "XYL">XYL</option>
+                <option value = "YHOO">YHOO</option>
+                <option value = "YUM">YUM</option>
+                <option value = "ZBH">ZBH</option>
+                <option value = "ZION">ZION</option>
+                <option value = "ZTS">ZTS</option>
+                <option value = "^VIX">^VIX</option>
+                <option value = "^VXN">^VXN</option>
+                <option value = "IDU">IDU</option>
+                <option value = "IYC">IYC</option>
+                <option value = "IYE">IYE</option>
+                <option value = "IYG">IYG</option>
+                <option value = "IYH">IYH</option>
+                <option value = "IYJ">IYJ</option>
+                <option value = "IYK">IYK</option>
+                <option value = "IYM">IYM</option>
+                <option value = "IYR">IYR</option>
+                <option value = "IYT">IYT</option>
+                <option value = "IYW">IYW</option>
+                <option value = "IYY">IYY</option>
+                <option value = "IYZ">IYZ</option>
+                <option value = "DIA">DIA</option>
+                <option value = "^GSPC">^GSPC</option>
+         </select>
+          
+        <br>
+        <button>Submit</button>
+      </form>
+
+        </div>
+
+
+    <script>
+      // execute/clear BS loaders for docs
+      $(function(){while(window.BS&&window.BS.loader&&window.BS.loader.length){(window.BS.loader.pop())()}});
+
+      $(document).ready(function(){
+        $(".chosen").chosen({width: "33%"});
+      }); 
+    </script>
+
+    <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+    
+  </body>
+</html>
